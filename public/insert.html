@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Course - Manisha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>MANISHA COURSE REGISTRATION</h1></header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="list.html">List Courses</a>
+    <a href="listOne.html">Search Course</a>
+    <a href="insert.html">Register Course</a>
+    <a href="update.html">Update Course</a>
+    <a href="delete.html">Delete Course</a>
+</nav>
+
+<div class="container">
+    <h2>REGISTER COURSE</h2>
+
+    <form id="courseForm">
+        Course ID:
+        <input type="number" id="course_id" required>
+
+        Course Name:
+        <input type="text" id="course_name" required>
+
+        Department:
+        <select id="department" required>
+            <option value="">Select Department</option>
+            <option>Computer Science</option>
+            <option>Information Technology</option>
+            <option>Electronics</option>
+            <option>Electrical Engineering</option>
+            <option>Mechanical Engineering</option>
+            <option>Civil Engineering</option>
+        </select>
+
+        Semester:
+        <select id="semester" required>
+            <option value="">Select Semester</option>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+        </select>
+
+        Number:
+        <input type="number" id="number" required>
+
+        Age:
+        <input type="number" id="age" required>
+
+        <button type="submit">Save Course</button>
+    </form>
+
+    <p id="message"></p>
+</div>
+
+<script>
+document.getElementById("courseForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const course = {
+        course_id: document.getElementById("course_id").value,
+        course_name: document.getElementById("course_name").value,
+        department: document.getElementById("department").value,
+        semester: document.getElementById("semester").value,
+        number: document.getElementById("number").value,
+        age: document.getElementById("age").value
+    };
+
+    fetch("/courses", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(course)
+    })
+    .then(response => response.text().then(message => {
+        if (!response.ok) throw new Error(message);
+        return message;
+    }))
+    .then(message => {
+        document.getElementById("message").textContent = message;
+        document.getElementById("courseForm").reset();
+    })
+    .catch(error => {
+        document.getElementById("message").textContent = error.message;
+    });
+});
+</script>
+
+</body>
+</html>

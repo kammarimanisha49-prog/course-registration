@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Courses - Manisha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>MANISHA COURSE REGISTRATION</h1></header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="list.html">List Courses</a>
+    <a href="listOne.html">Search Course</a>
+    <a href="insert.html">Register Course</a>
+    <a href="update.html">Update Course</a>
+    <a href="delete.html">Delete Course</a>
+</nav>
+
+<div class="container">
+    <h2>LIST OF COURSES</h2>
+
+    <button onclick="loadCourses()">Refresh List</button>
+
+    <table border="1" id="courseTable">
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Number</th>
+            <th>Age</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+loadCourses();
+
+function loadCourses() {
+    fetch("/courses")
+    .then(response => response.json())
+    .then(data => {
+        let table = document.getElementById("courseTable");
+
+        table.innerHTML = `
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Department</th>
+                <th>Semester</th>
+                <th>Number</th>
+                <th>Age</th>
+            </tr>`;
+
+        if (data.length === 0) {
+            table.innerHTML +=
+                "<tr><td colspan='6'>No courses found</td></tr>";
+            return;
+        }
+
+        data.forEach(course => {
+            table.innerHTML += `
+                <tr>
+                    <td>${course.course_id}</td>
+                    <td>${course.course_name}</td>
+                    <td>${course.department}</td>
+                    <td>${course.semester}</td>
+                    <td>${course.number}</td>
+                    <td>${course.age}</td>
+                </tr>`;
+        });
+    })
+    .catch(error => {
+        alert("Unable to load courses: " + error.message);
+    });
+}
+</script>
+
+</body>
+</html>

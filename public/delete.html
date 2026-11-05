@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Course - Manisha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>MANISHA COURSE REGISTRATION</h1></header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="list.html">List Courses</a>
+    <a href="listOne.html">Search Course</a>
+    <a href="insert.html">Register Course</a>
+    <a href="update.html">Update Course</a>
+    <a href="delete.html">Delete Course</a>
+</nav>
+
+<div class="container">
+    <h2>DELETE COURSE</h2>
+
+    Course ID:
+    <input type="number" id="course_id">
+
+    <button onclick="deleteCourse()">Delete Course</button>
+
+    <p id="message"></p>
+</div>
+
+<script>
+function deleteCourse() {
+    let id = document.getElementById("course_id").value;
+
+    if (id === "") {
+        alert("Please enter Course ID");
+        return;
+    }
+
+    if (!confirm("Are you sure you want to delete this course?")) {
+        return;
+    }
+
+    fetch("/courses/" + id, {
+        method: "DELETE"
+    })
+    .then(response => response.text().then(message => {
+        if (!response.ok) throw new Error(message);
+        return message;
+    }))
+    .then(message => {
+        document.getElementById("message").textContent = message;
+        document.getElementById("course_id").value = "";
+    })
+    .catch(error => {
+        document.getElementById("message").textContent = error.message;
+    });
+}
+</script>
+
+</body>
+</html>

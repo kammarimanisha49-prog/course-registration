@@ -1,0 +1,162 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #edf5f8;
+    color: #203747;
+}
+
+header {
+    background: #102a43;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+header p {
+    color: #8ce9de;
+}
+
+nav {
+    background: #176b87;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 8px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #8ce9de;
+}
+
+.hero {
+    text-align: center;
+    padding: 90px 20px;
+    color: white;
+    background:
+        linear-gradient(rgba(10, 35, 55, 0.72),
+                        rgba(10, 35, 55, 0.72)),
+        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h2 {
+    font-size: 36px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+.container {
+    width: 85%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(16, 42, 67, 0.10);
+    overflow-x: auto;
+}
+
+h2 {
+    color: #176b87;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin: 10px 0 20px;
+    border: 1px solid #cbdce3;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background: #fcfeff;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #19a7a0;
+}
+
+button {
+    background: #19a7a0;
+    color: #062d3b;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #128780;
+    color: white;
+}
+
+table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    background: white;
+}
+
+th {
+    background: #102a43;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #dce8ed;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #edf7f8;
+}
+
+#message {
+    color: #176b87;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+footer {
+    background: #102a43;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    margin-top: 35px;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 21px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .hero h2 {
+        font-size: 27px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+}
